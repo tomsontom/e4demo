@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmi:id="_-K-zoJS1Ed-3RJVy9OYaEA" elementId="org.eclipse.e4.demo.mailapp.application">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_mWWEUJS2Ed-3RJVy9OYaEA" label="MailDemo 4.0" width="640" height="480"/>
+</application:Application>
