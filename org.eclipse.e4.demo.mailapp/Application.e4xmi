@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ASCII"?>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmi:id="_-K-zoJS1Ed-3RJVy9OYaEA" elementId="org.eclipse.e4.demo.mailapp.application">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_mWWEUJS2Ed-3RJVy9OYaEA" label="MailDemo 4.0" width="640" height="480">
+    <children xsi:type="basic:PartSashContainer" xmi:id="_2ECqcJTxEd-C27d14YNxsg" containerData="" horizontal="true">
+      <children xsi:type="basic:PartStack" xmi:id="_LDxP4JT2Ed-C27d14YNxsg" containerData="">
+        <children xsi:type="basic:Part" xmi:id="_7zaBAJTxEd-C27d14YNxsg" contributionURI="platform:/plugin/org.eclipse.e4.demo.mailapp/org.eclipse.e4.demo.mailapp.AccountView" containerData="" label="Accounts"/>
+      </children>
+      <children xsi:type="basic:PartSashContainer" xmi:id="_8hpAAJTxEd-C27d14YNxsg" containerData="50">
+        <children xsi:type="basic:PartStack" xmi:id="_aZhFUJULEd-C27d14YNxsg">
+          <children xsi:type="basic:Part" xmi:id="_-UYI8JTxEd-C27d14YNxsg" contributionURI="platform:/plugin/org.eclipse.e4.demo.mailapp/org.eclipse.e4.demo.mailapp.FolderView" label="Foldercontent"/>
+        </children>
+        <children xsi:type="basic:PartStack" xmi:id="_buPckJULEd-C27d14YNxsg">
+          <children xsi:type="basic:Part" xmi:id="_-0LqYJTxEd-C27d14YNxsg" contributionURI="platform:/plugin/org.eclipse.e4.demo.mailapp/org.eclipse.e4.demo.mailapp.MailView" label="Mail"/>
+        </children>
+      </children>
+    </children>
+  </children>
+</application:Application>

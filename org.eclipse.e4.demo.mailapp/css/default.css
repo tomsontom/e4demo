@@ -1,0 +1,23 @@
+.MTrimmedWindow { 
+    background-color: #E8E8E8;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.MPartStack {
+    tab-renderer: url('platform:/plugin/org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.CTabRendering');
+    unselected-tabs-color: #FFFFFF #FFFFFF #FFFFFF 100% 100%;
+    outer-keyline-color: #FFFFFF;
+	inner-keyline-color: #FFFFFF;
+	font-size: 12;
+}
+
+.mailList {
+	background-color: #FFF #EEE 100%;
+}
+
+.mailHeader {
+	background-color: #FFF #DDD 100% 
+}
