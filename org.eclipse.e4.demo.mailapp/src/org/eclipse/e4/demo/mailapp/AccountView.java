@@ -10,6 +10,9 @@
  ******************************************************************************/
 package org.eclipse.e4.demo.mailapp;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,11 +25,14 @@ import org.eclipse.core.databinding.observable.masterdetail.IObservableFactory;
 import org.eclipse.core.databinding.property.list.IListProperty;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.di.extensions.Preference;
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.demo.mailapp.mailservice.IMailSession;
 import org.eclipse.e4.demo.mailapp.mailservice.IMailSessionFactory;
+import org.eclipse.e4.demo.mailapp.mailservice.IMailSession.ISessionListener;
 import org.eclipse.e4.demo.mailapp.mailservice.domain.IAccount;
 import org.eclipse.e4.demo.mailapp.mailservice.domain.IFolder;
 import org.eclipse.e4.demo.mailapp.mailservice.domain.IFolderContainer;
+import org.eclipse.e4.demo.mailapp.mailservice.domain.IMail;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
@@ -61,6 +67,12 @@ public class AccountView {
 	@Inject
 	@Optional
 	private ESelectionService selectionService;
+	
+	private ISessionListener listener;
+	
+	@Inject
+	@Optional
+	private IEventBroker eventBroker;
 	
 	@Inject
 	public AccountView(Composite parent, IMailSessionFactory mailSessionFactory) {
@@ -103,6 +115,18 @@ public class AccountView {
 				}
 			}
 		});
+		
+		listener = new ISessionListener() {
+			
+			public void mailAdded(IFolder folder, IMail mail) {
+				if( eventBroker != null ) {
+					Map<String,Object> map = new HashMap<String, Object>();
+					map.put(EventConstants.NEW_MAIL_TAG_FOLDER, folder);
+					map.put(EventConstants.NEW_MAIL_TAG_MAIL, mail);
+					eventBroker.post(EventConstants.NEW_MAIL, map);
+				}
+			}
+		};
 	}
 	
 	@Inject
@@ -126,9 +150,15 @@ public class AccountView {
 	@PostConstruct
 	public void init() {
 		if( username != null && password != null && host != null ) {
+			
+			if( mailSession != null ) {
+				mailSession.removeListener(listener);
+			}
+			
 			mailSession = mailSessionFactory.openSession(host, username, password);
 			if( mailSession != null ) {
-				viewer.setInput(mailSession.getAccounts());				
+				viewer.setInput(mailSession.getAccounts());
+				mailSession.addListener(listener);
 			} else {
 				viewer.setInput(new WritableList());
 			}

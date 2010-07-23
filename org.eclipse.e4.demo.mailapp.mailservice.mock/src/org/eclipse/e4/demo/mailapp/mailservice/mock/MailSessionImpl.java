@@ -13,13 +13,17 @@ package org.eclipse.e4.demo.mailapp.mailservice.mock;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.e4.demo.mailapp.mailservice.IMailSession;
+import org.eclipse.e4.demo.mailapp.mailservice.domain.IAccount;
 import org.eclipse.e4.demo.mailapp.mailservice.domain.IFolder;
 import org.eclipse.e4.demo.mailapp.mailservice.domain.IMail;
 import org.eclipse.e4.demo.mailapp.mailservice.domain.impl.AccountImpl;
@@ -29,7 +33,7 @@ import org.eclipse.e4.demo.mailapp.mailservice.domain.impl.MailImpl;
 @SuppressWarnings("restriction")
 public class MailSessionImpl implements IMailSession {
 	
-	private Map<IFolder, List<IMail>> folderMails = new HashMap<IFolder, List<IMail>>();
+	private Map<IFolder, List<IMail>> folderMails = Collections.synchronizedMap(new HashMap<IFolder, List<IMail>>());
 	
 	private WritableList accounts = new WritableList();
 
@@ -40,7 +44,7 @@ public class MailSessionImpl implements IMailSession {
 		folder.setName("Inbox");
 		account.addFolder(folder);
 
-		List<IMail> mails = new ArrayList<IMail>();
+		List<IMail> mails = new Vector<IMail>();
 		IMail mail = new MailImpl();
 		mail.setTo("tom.schindl@bestsolution.at");
 		mail.setFrom("tom@bestsolution.at");
@@ -49,14 +53,13 @@ public class MailSessionImpl implements IMailSession {
 		try {
 			mail.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2010-07-21 16:36"));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		mails.add(mail);
 		folderMails.put(folder, mails);
 		folder.setMailCount(1);
 		
-		mails = new ArrayList<IMail>();
+		mails = new Vector<IMail>();
 		FolderImpl subFolder = new FolderImpl();
 		subFolder.setName("e4-dev");
 		folder.addFolder(subFolder);
@@ -69,7 +72,6 @@ public class MailSessionImpl implements IMailSession {
 		try {
 			mail.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2010-07-20 02:23"));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		mails.add(mail);
@@ -83,7 +85,6 @@ public class MailSessionImpl implements IMailSession {
 		try {
 			mail.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2010-07-19 20:55"));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		mails.add(mail);
@@ -107,12 +108,67 @@ public class MailSessionImpl implements IMailSession {
 		accounts.add(account);
 	}
 
+	class MailGenerator implements Runnable {
+		private final FolderImpl folder;
+		
+		MailGenerator(FolderImpl folder) {
+			this.folder = folder;
+		}
+		
+		public void run() {
+			while( true ) {
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					break;
+				}
+				
+				Date d = new Date();
+				MailImpl mail = new MailImpl();
+				mail.setTo("tom.schindl@bestsolution.at");
+				mail.setFrom("noreply@bestsolution.at");
+				mail.setSubject("Auto Mail " + SimpleDateFormat.getDateTimeInstance().format(d));
+				mail.setBody("This is an auto generated mail!");
+				mail.setDate(d);
+				
+				folderMails.get(folder).add(mail);
+				folder.setMailCount(folderMails.get(folder).size());
+				
+				synchronized (listeners) {
+					for( ISessionListener l : listeners ) {
+						l.mailAdded(folder, mail);
+					}
+				}
+			}
+		}
+	}
+	
+	private List<ISessionListener> listeners = new ArrayList<ISessionListener>();
+	
+	public MailSessionImpl() {
+		FolderImpl folder = (FolderImpl) ((IAccount)accounts.get(0)).getFolders().get(0);
+		Thread t = new Thread(new MailGenerator(folder));
+		t.setDaemon(true);
+		t.start();
+	}
+	
 	public IObservableList getAccounts() {
 		return accounts;
 	}
 
 	public List<IMail> getMails(IFolder folder, int startIndex, int amount) {
-		System.err.println(folderMails.get(folder));
 		return folderMails.get(folder).subList(startIndex, startIndex + amount);
+	}
+	
+	public void addListener(ISessionListener listener) {
+		synchronized(listeners) {
+			listeners.add(listener);	
+		}
+	}
+	
+	public void removeListener(ISessionListener listener) {
+		synchronized (listeners) {
+			listeners.remove(listener);
+		}
 	}
 }

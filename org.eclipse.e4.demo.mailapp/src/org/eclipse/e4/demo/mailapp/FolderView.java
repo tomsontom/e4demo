@@ -14,10 +14,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.demo.mailapp.mailservice.domain.IFolder;
 import org.eclipse.e4.demo.mailapp.mailservice.domain.IMail;
 import org.eclipse.e4.ui.services.IServiceConstants;
@@ -32,6 +34,8 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.osgi.service.event.Event;
+import org.osgi.service.event.EventHandler;
 
 @SuppressWarnings("restriction")
 public class FolderView {
@@ -40,6 +44,12 @@ public class FolderView {
 	@Inject
 	@Optional
 	private ESelectionService selectionService;
+	
+	@Inject
+	@Optional
+	private IEventBroker eventBroker;
+	
+	private IFolder folder;
 	
 	@Inject
 	public FolderView(Composite parent, @Optional IStylingEngine styleEngine) {
@@ -96,9 +106,28 @@ public class FolderView {
 		});
 	}
 	
+	@PostConstruct
+	void hookEvents() {
+		if( eventBroker != null ) {
+			eventBroker.subscribe(EventConstants.NEW_MAIL, new EventHandler() {
+				public void handleEvent(final Event event) {
+					if( event.getProperty(EventConstants.NEW_MAIL_TAG_FOLDER) == folder ) {
+						viewer.getControl().getDisplay().asyncExec(new Runnable() {
+							
+							public void run() {
+								viewer.add(event.getProperty(EventConstants.NEW_MAIL_TAG_MAIL));
+							}
+						});
+					}
+				}
+			});
+		}
+	}
+	
 	@Inject
 	public void setFolder(@Named(IServiceConstants.ACTIVE_SELECTION) @Optional IFolder folder) {
 		if( folder != null ) {
+			this.folder = folder;
 			viewer.setInput(folder.getSession().getMails(folder, 0, folder.getMailCount()));
 		}
 	}
