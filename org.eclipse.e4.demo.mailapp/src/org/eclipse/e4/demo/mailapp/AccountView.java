@@ -17,6 +17,7 @@ import javax.inject.Named;
 import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
+import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.core.databinding.observable.masterdetail.IObservableFactory;
 import org.eclipse.core.databinding.property.list.IListProperty;
 import org.eclipse.e4.core.di.annotations.Optional;
@@ -126,11 +127,13 @@ public class AccountView {
 	public void init() {
 		if( username != null && password != null && host != null ) {
 			mailSession = mailSessionFactory.openSession(host, username, password);
-			if( mailSession == null ) {
+			if( mailSession != null ) {
 				viewer.setInput(mailSession.getAccounts());				
+			} else {
+				viewer.setInput(new WritableList());
 			}
-			modified = false;
 		}
+		modified = false;
 	}
 	
 	@Focus
