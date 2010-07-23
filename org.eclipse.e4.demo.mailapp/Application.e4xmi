@@ -14,8 +14,8 @@
         </children>
       </children>
     </children>
-    <mainMenu xmi:id="_Ru-DoJZWEd-cVNANKCK4Dw">
-      <children xsi:type="menu:Menu" xmi:id="_wyWmsJZXEd-DYqcoI6uSNA" label="File">
+    <mainMenu xmi:id="_Ru-DoJZWEd-cVNANKCK4Dw" elementId="">
+      <children xsi:type="menu:Menu" xmi:id="_wyWmsJZXEd-DYqcoI6uSNA" elementId="org.eclipse.e4.demo.mailapp.filemenu" label="File">
         <children xsi:type="menu:DirectMenuItem" xmi:id="_OmJmoJZYEd-y4-SyLFP7oA" label="Preferences" contributionURI="platform:/plugin/org.eclipse.e4.demo.mailapp/org.eclipse.e4.demo.mailapp.PreferenceHandler"/>
       </children>
     </mainMenu>
