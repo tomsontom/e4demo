@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_Nzo50JdDEd-U6_e-IU8NSg">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_OcuTEJdDEd-U6_e-IU8NSg" featurename="commands" parentElementId="org.eclipse.e4.demo.mailapp.application" positionInList="">
+    <elements xsi:type="commands:Command" xmi:id="_BzvcgJdHEd-U6_e-IU8NSg" elementId="org.eclipse.e4.demo.mailapp.command.newmail" commandName="New Mail"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_ZshIIJdKEd-U6_e-IU8NSg" featurename="handlers" parentElementId="org.eclipse.e4.demo.mailapp.application">
+    <elements xsi:type="commands:Handler" xmi:id="_duAAkJdKEd-U6_e-IU8NSg" contributionURI="platform:/plugin/org.eclipse.e4.demo.mailapp.newmail/org.eclipse.e4.demo.mailapp.newmail.NewMailHandler" command="_BzvcgJdHEd-U6_e-IU8NSg"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_N2dRYJdQEd-J99Z_j-jnvA" featurename="children" parentElementId="org.eclipse.e4.demo.mailapp.filemenu" positionInList="first">
+    <elements xsi:type="menu:HandledMenuItem" xmi:id="_78HWQJdQEd-J99Z_j-jnvA" label="New Mail" command="_BzvcgJdHEd-U6_e-IU8NSg"/>
+  </fragments>
+</fragment:ModelFragments>
