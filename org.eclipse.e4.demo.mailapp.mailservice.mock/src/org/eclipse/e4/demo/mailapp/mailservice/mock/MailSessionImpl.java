@@ -171,4 +171,12 @@ public class MailSessionImpl implements IMailSession {
 			listeners.remove(listener);
 		}
 	}
+
+	public IMail createMail() {
+		return new MailImpl();
+	}
+
+	public void sendMail(IAccount account, IMail mail) {
+		
+	}
 }
