@@ -19,6 +19,10 @@
                name="applicationCSS"
                value="platform:/plugin/org.eclipse.e4.demo.mailapp/css/default.css">
          </property>
+         <property
+               name="lifeCycleURI"
+               value="platform:/plugin/org.eclipse.e4.demo.mailapp/org.eclipse.e4.demo.mailapp.LifecycleHandler">
+         </property>
       </product>
    </extension>
 

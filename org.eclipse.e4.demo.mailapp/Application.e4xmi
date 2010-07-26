@@ -19,5 +19,9 @@
         <children xsi:type="menu:DirectMenuItem" xmi:id="_OmJmoJZYEd-y4-SyLFP7oA" label="Preferences" contributionURI="platform:/plugin/org.eclipse.e4.demo.mailapp/org.eclipse.e4.demo.mailapp.PreferenceHandler"/>
       </children>
     </mainMenu>
+    <trimBars xmi:id="_68dscJjXEd-9Tsw3tWCXuQ">
+      <children xsi:type="menu:ToolBar" xmi:id="_7WGUcJjXEd-9Tsw3tWCXuQ" elementId="org.eclipse.e4.demo.mailapp.maintoolbar"/>
+    </trimBars>
   </children>
+  <bindingContexts>org.eclipse.ui.contexts.dialogAndWindow</bindingContexts>
 </application:Application>

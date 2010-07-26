@@ -24,6 +24,7 @@ import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.core.databinding.observable.masterdetail.IObservableFactory;
 import org.eclipse.core.databinding.property.list.IListProperty;
+import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.di.extensions.Preference;
 import org.eclipse.e4.core.services.events.IEventBroker;
@@ -35,6 +36,7 @@ import org.eclipse.e4.demo.mailapp.mailservice.domain.IFolder;
 import org.eclipse.e4.demo.mailapp.mailservice.domain.IFolderContainer;
 import org.eclipse.e4.demo.mailapp.mailservice.domain.IMail;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.databinding.viewers.ObservableListTreeContentProvider;
@@ -46,6 +48,8 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
@@ -74,10 +78,15 @@ public class AccountView {
 	@Inject
 	@Optional
 	private IEventBroker eventBroker;
+
+	@Inject
+	@Optional
+	private MApplication application;
 	
 	@Inject
 	public AccountView(Composite parent, IMailSessionFactory mailSessionFactory) {
 		this.mailSessionFactory = mailSessionFactory;
+		
 		viewer = new TreeViewer(parent,SWT.FULL_SELECTION);
 		viewer.setLabelProvider(new ColumnLabelProvider() {
 			@Override
@@ -128,6 +137,14 @@ public class AccountView {
 				}
 			}
 		};
+		
+		// Work around for 4.0 Bug of not cleaning up on Window-close
+		viewer.getControl().addDisposeListener(new DisposeListener() {
+			
+			public void widgetDisposed(DisposeEvent e) {
+				cleanUp();
+			}
+		});
 	}
 	
 	@Inject
@@ -165,6 +182,9 @@ public class AccountView {
 			}
 		}
 		modified = false;
+		if( application != null ) {
+			application.getContext().set(IMailSession.class, mailSession);	
+		}
 	}
 	
 	@PreDestroy
@@ -183,6 +203,9 @@ public class AccountView {
 					MessageDialog.openWarning(shell, "Connection failed", "Opening a connecting to the mail server failed.");
 				}
 			}
+		}
+		if( application != null ) {
+			application.getContext().set(IMailSession.class, mailSession);	
 		}
 	}
 }

@@ -34,6 +34,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.widgets.Composite;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
@@ -105,6 +107,14 @@ public class FolderView {
 				if( selectionService != null ) {
 					selectionService.setSelection(((IStructuredSelection)event.getSelection()).getFirstElement());
 				}
+			}
+		});
+		
+		// Work around for 4.0 Bug of not cleaning up on Window-close
+		viewer.getControl().addDisposeListener(new DisposeListener() {
+			
+			public void widgetDisposed(DisposeEvent e) {
+				unhookEvents();
 			}
 		});
 	}
