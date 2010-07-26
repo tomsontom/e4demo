@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -164,6 +165,13 @@ public class AccountView {
 			}
 		}
 		modified = false;
+	}
+	
+	@PreDestroy
+	void cleanUp() {
+		if( mailSession != null && listener != null ) {
+			mailSession.removeListener(listener);	
+		}
 	}
 	
 	@Focus

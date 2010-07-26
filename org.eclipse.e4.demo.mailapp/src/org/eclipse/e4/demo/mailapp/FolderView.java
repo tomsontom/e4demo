@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -48,6 +49,8 @@ public class FolderView {
 	@Inject
 	@Optional
 	private IEventBroker eventBroker;
+	
+	private EventHandler eventHandler;
 	
 	private IFolder folder;
 	
@@ -109,7 +112,7 @@ public class FolderView {
 	@PostConstruct
 	void hookEvents() {
 		if( eventBroker != null ) {
-			eventBroker.subscribe(EventConstants.NEW_MAIL, new EventHandler() {
+			eventHandler = new EventHandler() {
 				public void handleEvent(final Event event) {
 					if( event.getProperty(EventConstants.NEW_MAIL_TAG_FOLDER) == folder ) {
 						viewer.getControl().getDisplay().asyncExec(new Runnable() {
@@ -120,7 +123,15 @@ public class FolderView {
 						});
 					}
 				}
-			});
+			};
+			eventBroker.subscribe(EventConstants.NEW_MAIL, eventHandler);
+		}
+	}
+	
+	@PreDestroy
+	void unhookEvents() {
+		if( eventBroker != null && eventHandler != null ) {
+			eventBroker.unsubscribe(eventHandler);
 		}
 	}
 	
