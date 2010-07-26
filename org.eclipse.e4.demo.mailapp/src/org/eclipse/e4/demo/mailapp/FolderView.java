@@ -49,6 +49,8 @@ public class FolderView {
 	@Optional
 	private IEventBroker eventBroker;
 	
+	private EventHandler eventHandler;
+	
 	private IFolder folder;
 	
 	@Inject
@@ -121,6 +123,13 @@ public class FolderView {
 					}
 				}
 			});
+		}
+	}
+	
+	@PreDestroy
+	void unhookEvents() {
+		if( eventBroker != null && eventHandler != null ) {
+			eventBroker.unsubscribe(eventHandler);
 		}
 	}
 	
