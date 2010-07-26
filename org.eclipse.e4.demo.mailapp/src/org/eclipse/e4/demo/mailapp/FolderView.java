@@ -111,7 +111,7 @@ public class FolderView {
 	@PostConstruct
 	void hookEvents() {
 		if( eventBroker != null ) {
-			eventBroker.subscribe(EventConstants.NEW_MAIL, new EventHandler() {
+			eventHandler = new EventHandler() {
 				public void handleEvent(final Event event) {
 					if( event.getProperty(EventConstants.NEW_MAIL_TAG_FOLDER) == folder ) {
 						viewer.getControl().getDisplay().asyncExec(new Runnable() {
@@ -122,7 +122,8 @@ public class FolderView {
 						});
 					}
 				}
-			});
+			};
+			eventBroker.subscribe(EventConstants.NEW_MAIL, eventHandler);
 		}
 	}
 	
