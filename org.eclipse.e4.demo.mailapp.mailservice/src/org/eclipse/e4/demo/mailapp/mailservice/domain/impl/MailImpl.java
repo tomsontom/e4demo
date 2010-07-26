@@ -13,6 +13,7 @@ package org.eclipse.e4.demo.mailapp.mailservice.domain.impl;
 import java.beans.PropertyChangeEvent;
 import java.util.Date;
 
+import org.eclipse.e4.demo.mailapp.mailservice.domain.IAccount;
 import org.eclipse.e4.demo.mailapp.mailservice.domain.IMail;
 
 public class MailImpl extends BaseBean implements IMail {
@@ -58,11 +59,11 @@ public class MailImpl extends BaseBean implements IMail {
 		firePropertyChange(new PropertyChangeEvent(this, "body", this.body,
 				this.body = body));
 	}
-	
+
 	public Date getDate() {
 		return date;
 	}
-	
+
 	public void setDate(Date date) {
 		firePropertyChange(new PropertyChangeEvent(this, "date", this.date,
 				this.date = date));
