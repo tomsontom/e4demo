@@ -166,6 +166,13 @@ public class AccountView {
 		modified = false;
 	}
 	
+	@PreDestroy
+	void cleanUp() {
+		if( mailSession != null && listener != null ) {
+			mailSession.removeListener(listener);	
+		}
+	}
+	
 	@Focus
 	void onFocus(@Named(IServiceConstants.ACTIVE_SHELL) Shell shell) {
 		if( modified ) {
