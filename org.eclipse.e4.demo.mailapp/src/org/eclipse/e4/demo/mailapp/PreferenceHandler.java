@@ -9,7 +9,7 @@
  * 
  * b) EDL
  * The Eclipse Development License v1.0 which accompanies this distribution, 
- * is reproduced below, and available at http://www.eclipse.org/org/documents/edl-v10.php
+ * and is available at http://www.eclipse.org/org/documents/edl-v10.php
  *
  * Contributors:
  *     Tom Schindl <tom.schindl@bestsolution.at> - initial API and implementation
