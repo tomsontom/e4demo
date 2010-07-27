@@ -33,6 +33,7 @@
   <bindingTables xmi:id="_ZJk7IJljEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.mainwindow.keybindings" bindingContextId="org.eclipse.e4.demo.mailapp.mainwindow.context"/>
   <rootContext xmi:id="_GpUo0JlfEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.app.context" name="In the Application">
     <children xmi:id="_BZaRkJljEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.mainwindow.context" name="In Main Window"/>
+    <children xmi:id="_BwpvEJlyEd-PpMkm7zoQnw" elementId="org.eclipse.ui.contexts.dialog" name="Work around for 320915"/>
   </rootContext>
   <bindingContexts>org.eclipse.e4.demo.mailapp.app.context</bindingContexts>
   <commands xmi:id="_yPokIJlkEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.command.exit" commandName="Exit Application"/>
