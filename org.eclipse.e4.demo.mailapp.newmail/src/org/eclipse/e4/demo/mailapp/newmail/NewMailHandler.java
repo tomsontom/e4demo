@@ -38,7 +38,6 @@ public class NewMailHandler {
 		window.getTags().add("temporaryObject");
 		window.setHeight(500);
 		window.setWidth(600);
-		window.getBindingContexts().add("org.eclipse.e4.demo.mailapp.newmailwindow.context");
 		
 		// Create the toolbar
 		MTrimBar topTrim = MBasicFactory.INSTANCE.createTrimBar();
