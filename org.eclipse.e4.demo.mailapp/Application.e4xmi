@@ -14,14 +14,26 @@
         </children>
       </children>
     </children>
+    <bindingContexts>org.eclipse.e4.demo.mailapp.mainwindow.context</bindingContexts>
     <mainMenu xmi:id="_Ru-DoJZWEd-cVNANKCK4Dw" elementId="">
       <children xsi:type="menu:Menu" xmi:id="_wyWmsJZXEd-DYqcoI6uSNA" elementId="org.eclipse.e4.demo.mailapp.filemenu" label="File">
         <children xsi:type="menu:DirectMenuItem" xmi:id="_OmJmoJZYEd-y4-SyLFP7oA" label="Preferences" contributionURI="platform:/plugin/org.eclipse.e4.demo.mailapp/org.eclipse.e4.demo.mailapp.PreferenceHandler"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_eIwgAJllEd-425f2B7bjgA"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_bWiQAJllEd-425f2B7bjgA" elementId="org.eclipse.ui.file.exit" label="Exit" mnemonics="" command="_yPokIJlkEd-425f2B7bjgA"/>
       </children>
     </mainMenu>
     <trimBars xmi:id="_68dscJjXEd-9Tsw3tWCXuQ">
       <children xsi:type="menu:ToolBar" xmi:id="_7WGUcJjXEd-9Tsw3tWCXuQ" elementId="org.eclipse.e4.demo.mailapp.maintoolbar"/>
     </trimBars>
   </children>
-  <bindingContexts>org.eclipse.ui.contexts.dialogAndWindow</bindingContexts>
+  <handlers xmi:id="_6L_WsJlkEd-425f2B7bjgA" contributionURI="platform:/plugin/org.eclipse.e4.demo.mailapp/org.eclipse.e4.demo.mailapp.ExitHandler" command="_yPokIJlkEd-425f2B7bjgA"/>
+  <bindingTables xmi:id="_xyypYJlfEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.app.keybindings" bindingContextId="org.eclipse.e4.demo.mailapp.app.context">
+    <bindings xmi:id="_w88NMJlkEd-425f2B7bjgA" keySequence="M1+Q" command="_yPokIJlkEd-425f2B7bjgA"/>
+  </bindingTables>
+  <bindingTables xmi:id="_ZJk7IJljEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.mainwindow.keybindings" bindingContextId="org.eclipse.e4.demo.mailapp.mainwindow.context"/>
+  <rootContext xmi:id="_GpUo0JlfEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.app.context" name="In the Application">
+    <children xmi:id="_BZaRkJljEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.mainwindow.context" name="In Main Window"/>
+  </rootContext>
+  <bindingContexts>org.eclipse.e4.demo.mailapp.app.context</bindingContexts>
+  <commands xmi:id="_yPokIJlkEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.command.exit" commandName="Exit Application"/>
 </application:Application>

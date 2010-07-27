@@ -14,4 +14,7 @@
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_DKXiAJjYEd-9Tsw3tWCXuQ" featurename="children" parentElementId="org.eclipse.e4.demo.mailapp.maintoolbar">
     <elements xsi:type="menu:HandledToolItem" xmi:id="_I-NI4JjYEd-9Tsw3tWCXuQ" label="New Mail" iconURI="platform:/plugin/org.eclipse.e4.demo.mailapp.newmail/images/email_add.png" command="_BzvcgJdHEd-U6_e-IU8NSg"/>
   </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_guC5gJlgEd-425f2B7bjgA" featurename="bindings" parentElementId="org.eclipse.e4.demo.mailapp.mainwindow.keybindings">
+    <elements xsi:type="commands:KeyBinding" xmi:id="_fQ6-wJlhEd-425f2B7bjgA" keySequence="M1+N" command="_BzvcgJdHEd-U6_e-IU8NSg"/>
+  </fragments>
 </fragment:ModelFragments>
