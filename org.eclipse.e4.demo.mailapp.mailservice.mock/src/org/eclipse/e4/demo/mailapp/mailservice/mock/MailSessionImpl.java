@@ -163,7 +163,10 @@ public class MailSessionImpl implements IMailSession {
 	}
 
 	public List<IMail> getMails(IFolder folder, int startIndex, int amount) {
-		return folderMails.get(folder).subList(startIndex, startIndex + amount);
+		if( folderMails.get(folder) != null ) {
+			return folderMails.get(folder).subList(startIndex, startIndex + amount);	
+		}
+		return Collections.emptyList();
 	}
 	
 	public void addListener(ISessionListener listener) {

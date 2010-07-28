@@ -86,7 +86,7 @@ public class MailView {
 		l = new Label(header,SWT.NONE);
 		l.setText("Subject");
 		
-		l = new Label(header, SWT.BORDER);
+		l = new Label(header, SWT.NONE);
 		l.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		dbc.bindValue(WidgetProperties.text().observe(l), BeanProperties.value("subject").observeDetail(mail));
 		
