@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
-<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_-K-zoJS1Ed-3RJVy9OYaEA" elementId="org.eclipse.e4.demo.mailapp.application">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_mWWEUJS2Ed-3RJVy9OYaEA" label="MailDemo 4.0" width="640" height="480">
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_-K-zoJS1Ed-3RJVy9OYaEA" elementId="org.eclipse.e4.demo.mailapp.application" bindingContexts="_GpUo0JlfEd-425f2B7bjgA">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_mWWEUJS2Ed-3RJVy9OYaEA" label="MailDemo 4.0" bindingContexts="_BZaRkJljEd-425f2B7bjgA" width="640" height="480">
     <children xsi:type="basic:PartSashContainer" xmi:id="_2ECqcJTxEd-C27d14YNxsg" containerData="" horizontal="true">
       <children xsi:type="basic:PartStack" xmi:id="_LDxP4JT2Ed-C27d14YNxsg" containerData="">
-        <children xsi:type="basic:Part" xmi:id="_7zaBAJTxEd-C27d14YNxsg" contributionURI="platform:/plugin/org.eclipse.e4.demo.mailapp/org.eclipse.e4.demo.mailapp.AccountView" containerData="" label="Accounts"/>
+        <children xsi:type="basic:Part" xmi:id="_7zaBAJTxEd-C27d14YNxsg" containerData="" contributionURI="platform:/plugin/org.eclipse.e4.demo.mailapp/org.eclipse.e4.demo.mailapp.AccountView" label="Accounts"/>
       </children>
       <children xsi:type="basic:PartSashContainer" xmi:id="_8hpAAJTxEd-C27d14YNxsg" containerData="50">
         <children xsi:type="basic:PartStack" xmi:id="_aZhFUJULEd-C27d14YNxsg">
@@ -14,7 +14,6 @@
         </children>
       </children>
     </children>
-    <bindingContexts>org.eclipse.e4.demo.mailapp.mainwindow.context</bindingContexts>
     <mainMenu xmi:id="_Ru-DoJZWEd-cVNANKCK4Dw" elementId="">
       <children xsi:type="menu:Menu" xmi:id="_wyWmsJZXEd-DYqcoI6uSNA" elementId="org.eclipse.e4.demo.mailapp.filemenu" label="File">
         <children xsi:type="menu:DirectMenuItem" xmi:id="_OmJmoJZYEd-y4-SyLFP7oA" label="Preferences" contributionURI="platform:/plugin/org.eclipse.e4.demo.mailapp/org.eclipse.e4.demo.mailapp.PreferenceHandler"/>
@@ -22,19 +21,24 @@
         <children xsi:type="menu:HandledMenuItem" xmi:id="_bWiQAJllEd-425f2B7bjgA" elementId="org.eclipse.ui.file.exit" label="Exit" mnemonics="" command="_yPokIJlkEd-425f2B7bjgA"/>
       </children>
     </mainMenu>
-    <trimBars xmi:id="_68dscJjXEd-9Tsw3tWCXuQ">
+    <trimBars xmi:id="_68dscJjXEd-9Tsw3tWCXuQ" elementId="maintoolbar">
       <children xsi:type="menu:ToolBar" xmi:id="_7WGUcJjXEd-9Tsw3tWCXuQ" elementId="org.eclipse.e4.demo.mailapp.maintoolbar"/>
     </trimBars>
   </children>
   <handlers xmi:id="_6L_WsJlkEd-425f2B7bjgA" contributionURI="platform:/plugin/org.eclipse.e4.demo.mailapp/org.eclipse.e4.demo.mailapp.ExitHandler" command="_yPokIJlkEd-425f2B7bjgA"/>
-  <bindingTables xmi:id="_xyypYJlfEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.app.keybindings" bindingContextId="org.eclipse.e4.demo.mailapp.app.context">
+  <bindingTables xmi:id="_xyypYJlfEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.app.keybindings" bindingContext="_GpUo0JlfEd-425f2B7bjgA">
     <bindings xmi:id="_w88NMJlkEd-425f2B7bjgA" keySequence="M1+Q" command="_yPokIJlkEd-425f2B7bjgA"/>
   </bindingTables>
-  <bindingTables xmi:id="_ZJk7IJljEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.mainwindow.keybindings" bindingContextId="org.eclipse.e4.demo.mailapp.mainwindow.context"/>
+  <bindingTables xmi:id="_ZJk7IJljEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.mainwindow.keybindings" bindingContext="_BwpvEJlyEd-PpMkm7zoQnw"/>
   <rootContext xmi:id="_GpUo0JlfEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.app.context" name="In the Application">
     <children xmi:id="_BZaRkJljEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.mainwindow.context" name="In Main Window"/>
     <children xmi:id="_BwpvEJlyEd-PpMkm7zoQnw" elementId="org.eclipse.ui.contexts.dialog" name="Work around for 320915"/>
   </rootContext>
-  <bindingContexts>org.eclipse.e4.demo.mailapp.app.context</bindingContexts>
   <commands xmi:id="_yPokIJlkEd-425f2B7bjgA" elementId="org.eclipse.e4.demo.mailapp.command.exit" commandName="Exit Application"/>
+  <addons xmi:id="_JoDEM40JEeCR2c-wvIZHbw" elementId="org.eclipse.e4.core.commands.service" contributionURI="platform:/plugin/org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
+  <addons xmi:id="_JoDENI0JEeCR2c-wvIZHbw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="platform:/plugin/org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
+  <addons xmi:id="_JoDENY0JEeCR2c-wvIZHbw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="platform:/plugin/org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
+  <addons xmi:id="_JoDENo0JEeCR2c-wvIZHbw" elementId="org.eclipse.e4.ui.workbench.commands.model" contributionURI="platform:/plugin/org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.CommandProcessingAddon"/>
+  <addons xmi:id="_JoDEN40JEeCR2c-wvIZHbw" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="platform:/plugin/org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
+  <addons xmi:id="_JoDEOI0JEeCR2c-wvIZHbw" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="platform:/plugin/org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
 </application:Application>
