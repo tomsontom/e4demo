@@ -1,3 +1,52 @@
+.MTrimmedWindow.topLevel { 
+    margin-top: 5px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.MPartStack {
+    tab-renderer: url('platform:/plugin/org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.CTabRendering');
+    unselected-tabs-color: #FFFFFF #FFFFFF #FFFFFF 100% 100%;
+    outer-keyline-color: #FFFFFF;
+    inner-keyline-color: #FFFFFF;
+    padding: 0px 9px 10px;
+    tab-outline: #B6BCCC;
+    shadow-visible: true;
+}
+
+.MPartStack.active {
+    inner-keyline-color: #FFFFFF;
+    tab-outline: #B6BCCC;
+    shadow-visible: true;
+}
+
+.MTrimmedWindow { 
+    background-color: #E8E8E8;
+}
+
+.MPartStack {
+   font-size: 12;
+   simple: false;
+}
+
+.MTrimBar {
+    background-color: #E8E8E8;
+}
+
+.MTrimBar#maintoolbar {
+    background-color:  #CFCFCF #A8A8A8 100%;	
+}
+
+.MPartStack.active {
+    unselected-tabs-color: #F6F6F6 #D3D3D3 #D1D1D1 #D1D1D1 #D6D6D6 #D6D6D6 #FFFFFF 20% 45% 60% 70% 100% 100%;
+    outer-keyline-color: #C4C5C1;
+}
+
+CTabFolder.MArea .MPartStack, CTabFolder.MArea .MPartStack.active {
+    shadow-visible: false;
+}
+
 .MTrimmedWindow { 
     background-color: #E8E8E8;
     margin-top: 10px;
